@@ -1,5 +1,4 @@
 package examples;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -31,7 +30,7 @@ public class Example1Resource {
      *
      *
      * Run your StartApp with program Arguments: server
-     * Go to http://localhost:8080/hello/ok and verify your server is running.
+     * Go to   and verify your server is running.
      */
 
     @GET

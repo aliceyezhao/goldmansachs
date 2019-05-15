@@ -16,17 +16,24 @@
 
 import React from 'react';
 import LineChart from './charts/LineChart';
+import axios from 'axios';
 
 class Charts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            //date:'', line:'', posts=[], datestamp:undefined};
+            //this.handleStockChange= this.handleStockChange.bind(this);
+            data = undefined
+        };
+            
+        this.dataSourceHelper = this.dataSourceHelper.bind(this);
             /**
              * TODO
              * Initialize a state object to store a JavaScript object returned from the helper method.
              * It can be initialized to be empty.
              */
-        };
+            
     }
 
 
@@ -37,7 +44,14 @@ class Charts extends React.Component {
 
     dataSourceHelper(props) {
         props = props || this.props;
-        
+        //axios.get()
+        fetch(`http://localhost:8000/service_path/some_param${this.props.historicalStockData}.json`)
+        .then(res => {
+                const data = res.dailyClosePrice;
+                this.setState({data});
+        })
+    }
+
         /**
          * TODO
          * Write a helper method to make an AJAX HTTP request to your service for the
@@ -74,14 +88,16 @@ class Charts extends React.Component {
          *
          *  Don't forget to bind the helper method in the constructor!
          * */
-}
+    
     
     render() {
         /**
          * TODO
          * Render your LineChart component and pass the data for the chart to display via props
          */
+        return <LineChart data = {this.state.data}/>
     }
 }
 
 // Don't forget to export your component!
+export default Charts;

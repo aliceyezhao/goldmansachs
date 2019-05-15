@@ -16,9 +16,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../stylesheet.css';
+import './stylesheet.css';
+import App from './App';
+
 
 ReactDOM.render(
-  <p>Hello World</p>,
+ <App />,
   document.getElementById('root')
 );
+
+
+
+//let element = <MyParentCompoent/>; 
+//injection

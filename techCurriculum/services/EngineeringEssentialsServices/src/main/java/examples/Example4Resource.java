@@ -2,13 +2,14 @@ package examples;
 
 
 import model.Event;
+import utility.FileHelper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+import java.io.IOException;
 /**
  * Copyright 2018 Goldman Sachs.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,11 +39,12 @@ public class Example4Resource {
      *
      * URL: http://localhost:8080/events/sample
      */
+
+    @GET
     @Path("sample")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSampleEvent() {
-
-        Event event = null;
+    public Response getSampleEvent() throws IOException {
+        Event event = FileHelper.readSingleEvent("single:event.json");
         return Response.ok().entity(event).build();
     }
 }

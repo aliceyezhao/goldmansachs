@@ -1,8 +1,7 @@
 package examples;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
 
 /**
  * Copyright 2018 Goldman Sachs.

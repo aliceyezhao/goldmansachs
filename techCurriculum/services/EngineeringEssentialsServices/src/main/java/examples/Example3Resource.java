@@ -1,4 +1,11 @@
 package examples;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
+
 
 
 import javax.ws.rs.GET;
@@ -23,7 +30,7 @@ import java.io.IOException;
  * specific language governing permissions and limitations
  * under the License.
  */
-@Path("hello")
+@Path("response")
 public class Example3Resource {
 
     /**
@@ -39,10 +46,10 @@ public class Example3Resource {
      * URL: http://localhost:8080/response/test/fixed
      */
     @GET
-    @Path("/broken")
+    @Path("test/fixed")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getResponse() throws IOException {
-        String properResponse = "This site is now fixed.";
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Broken").build();
+        String entity = "This site is now fixed.";
+        return Response.status(Response.Status.OK).entity(entity).build();
     }
 }
