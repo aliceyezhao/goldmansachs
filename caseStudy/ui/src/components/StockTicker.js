@@ -36,7 +36,6 @@
  * in your package.json.
  *
  * react-select:
- * https://www.npmjs.com/package/react-select
  * http://jedwatson.github.io/react-select/
  * https://github.com/JedWatson/react-select
  *
@@ -47,7 +46,8 @@
  */
 
 import React from 'react';
-import {Typeahead} from 'react-bootstrap-typeahead'; //UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
+import Select from 'react-select';
+//import {Typeahead} from 'react-bootstrap-typeahead'; //UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
 /* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that
  * provides auto-complete suggestions as you type. This would require adding a search handler
  * method for an onSearch prop.
@@ -71,39 +71,42 @@ class StockTicker extends React.Component {
      * services.
      */
 
-     /*fetch("../../../services/src/main/resources/data/companyInfo.json") {
-       .then(response => {
-         return response.json()
-       })
-       .then(data => {
-         foreach (i:data) {
-           x = data.symbol;
-           console.log(x);
-         }
-       })
-       .catch(err => {
+    //  fetch("../../../services/src/main/resources/data/companyInfo.json") {
+    //    .then(response => {
+    //      return response.json()
+    //    })cd
+    //    .then(data => {
+    //      foreach (i:data) {
+    //        x = data.symbol;
+    //        console.log(x);
+    //      }
+    //    })
+    //    .catch(err => {
 
-       })
-     }*/
+    //    })
+    //  }
 
-    var options = ["ATVI", "ADBE", "AKAM", "ALXN", "GOOG", "AMZN", "AAL", "AMGN", "ADI", "AAPL",
-                    "AMAT", "ADSK", "ADP", "BIDU", "BIIB", "BMRN", "AVGO", "CA", "CELG", "CERN",
-                    "CHTR", "CHKP", "CTAS", "CSCO", "CTXS", "CTSH", "CMCSA", "COST", "CSX",
-                    "CTRP", "XRAY", "DISCA", "DISCK", "DISH", "DLTR", "EBAY", "EA", "EXPE",
-                    "ESRX", "FB", "FAST", "FISV", "GILD", "HAS", "HSIC", "HOLX", "IDXX",
-                    "ILMN", "INCY"];
+   
 
     constructor(props) {
         super(props);
+        // this.options = ["ATVI", "ADBE", "AKAM", "ALXN", "GOOG", "AMZN", "AAL", "AMGN", "ADI", "AAPL",
+        //                 "AMAT", "ADSK", "ADP", "BIDU", "BIIB", "BMRN", "AVGO", "CA", "CELG", "CERN",
+        //                 "CHTR", "CHKP", "CTAS", "CSCO", "CTXS", "CTSH", "CMCSA", "COST", "CSX",
+        //                 "CTRP", "XRAY", "DISCA", "DISCK", "DISH", "DLTR", "EBAY", "EA", "EXPE",
+        //                 "ESRX", "FB", "FAST", "FISV", "GILD", "HAS", "HSIC", "HOLX", "IDXX",
+        //                 "ILMN", "INCY"];
+                
         this.state = {
-            showcompanyinfo: false, //TODO: Use this boolean to determine if the company information should be rendered
-            company : {
-                symbol: '',
-                name: '',
-                city: '',
-                state: '',
-                sector: '',
-                industry: ''
+            showCompanyInfo: false, //TODO: Use this boolean to determine if the company information should be rendered
+            selectedOption: null,
+            company :{
+                symbol: 'APPL',
+                name: 'Apple Inc.',
+                city: 'Mountain View',
+                state: 'CA',
+                sector: 'Technology',
+                industry: 'Design'
             }
             /**
              * TODO
@@ -113,35 +116,48 @@ class StockTicker extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
-        if (event.length > 0) {
-            /**
-             * TODO
-             * Make a request to your service to GET company information for the selected company and set it in state.
-             * The information you will need to determine the URL will be contained in the 'event[0]' object,
-             * e.g. event[0] (event[0].symbol if your options are an array of objects) provides you the symbol selected.
-             * The URL will be on your localhost (e.g. http://localhost:8000/service_path/some_param) where
-             * your service is running. Your service MUST be running for the request to work (you can add a catch function
-             * to handle errors). If you successfully retrieve this information, you can set the state objects
-             * and render it.
-             */
-            this.getElementById('id');
-            this.setState({showinfo: true});
-            this.props.onChange();
-            //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
-            // to the App component, which will handle it via its own onChane prop,
-            // ultimately  used to fetch the data for the LineChart component.
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+        console.log(`Option selected:`, selectedOption);
+      }
 
-        }
-        else {
-            this.setState({showinfo: false});
-            this.props.onChange(undefined);
-        }
-    }
+    // handleChange(event) {
+    //     if (event.length > 0) {
+    //         /**
+    //          * TODO
+    //          * Make a request to your service to GET company information for the selected company and set it in state.
+    //          * The information you will need to determine the URL will be contained in the 'event[0]' object,
+    //          * e.g. event[0] (event[0].symbol if your options are an array of objects) provides you the symbol selected.
+    //          * The URL will be on your localhost (e.g. http://localhost:8000/service_path/some_param) where
+    //          * your service is running. Your service MUST be running for the request to work (you can add a catch function
+    //          * to handle errors). If you successfully retrieve this information, you can set the state objects
+    //          * and render it.
+    //          */
+    //         this.setState({showCompanyInfo: true});
+    //         this.props.onChange(sybmol);
+    //         //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
+    //         // to the App component, which will handle it via its own onChane prop,
+    //         // ultimately  used to fetch the data for the LineChart component.
+
+    //     }
+    //     else {
+    //         this.setState({showCompanyInfo: false});
+    //         this.props.onChange(undefined);
+    //     }
+    // }
+    
 
 
     render() {
-
+        var options = [
+            {value:"Apple Inc.", label:"APPL"},
+            {value:"Adobe Systems", label:"ADBE"},
+            {value:"Facebook", label:"FB"}]    
+        let dropdown = <Select
+                        value={this.state.selectedOption}
+                        onChange={this.handleChange}
+                        options={options}
+                    />;
         /**
          * TODO
          * Render a typeahead component that uses the data prefetched from your service to display a list of companies or
@@ -154,7 +170,12 @@ class StockTicker extends React.Component {
             <div className="stockticker">
                 <div className="ticker-input">
                     <p><strong>Stock Ticker</strong></p>
-                    <div className="stockticker-typeahead">
+                    <div style={{paddingTop: '32px'}} className="stockticker-typeahead">
+                    <h2>{this.state.company.name} - {this.state.company.symbol}</h2>
+                    <p>{this.state.company.city}, {this.state.company.state}</p>
+                    <p>{this.state.company.sector} - {this.state.company.industry}</p>
+                    {dropdown}
+                    
                         {/* useful props if you decide to use react-bootstrap-typeahead
                         <Typeahead
                              align=
@@ -184,4 +205,5 @@ class StockTicker extends React.Component {
 
 }
 
+export default StockTicker
 //Don't forget to export your component!
