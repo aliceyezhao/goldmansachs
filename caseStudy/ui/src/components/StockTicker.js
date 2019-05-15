@@ -39,7 +39,7 @@
  * https://www.npmjs.com/package/react-select
  * http://jedwatson.github.io/react-select/
  * https://github.com/JedWatson/react-select
- * 
+ *
  * react-boostrap-typeahead
  * https://www.npmjs.com/package/react-bootstrap-typeahead
  * http://ericgio.github.io/react-bootstrap-typeahead/
@@ -47,10 +47,9 @@
  */
 
 import React from 'react';
-//import {Typeahead} from 'react-bootstrap-typeahead'; UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
-
-/* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that 
- * provides auto-complete suggestions as you type. This would require adding a search handler 
+import {Typeahead} from 'react-bootstrap-typeahead'; //UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
+/* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that
+ * provides auto-complete suggestions as you type. This would require adding a search handler
  * method for an onSearch prop.
  * https://github.com/ericgio/react-bootstrap-typeahead/blob/master/example/examples/AsyncExample.react.js
  */
@@ -71,6 +70,29 @@ class StockTicker extends React.Component {
      * If you are having difficulty with this, you may hard code the options array from the company data provided for the
      * services.
      */
+
+     /*fetch("../../../services/src/main/resources/data/companyInfo.json") {
+       .then(response => {
+         return response.json()
+       })
+       .then(data => {
+         foreach (i:data) {
+           x = data.symbol;
+           console.log(x);
+         }
+       })
+       .catch(err => {
+
+       })
+     }*/
+
+    var options = ["ATVI", "ADBE", "AKAM", "ALXN", "GOOG", "AMZN", "AAL", "AMGN", "ADI", "AAPL",
+                    "AMAT", "ADSK", "ADP", "BIDU", "BIIB", "BMRN", "AVGO", "CA", "CELG", "CERN",
+                    "CHTR", "CHKP", "CTAS", "CSCO", "CTXS", "CTSH", "CMCSA", "COST", "CSX",
+                    "CTRP", "XRAY", "DISCA", "DISCK", "DISH", "DLTR", "EBAY", "EA", "EXPE",
+                    "ESRX", "FB", "FAST", "FISV", "GILD", "HAS", "HSIC", "HOLX", "IDXX",
+                    "ILMN", "INCY"];
+
     constructor(props) {
         super(props);
         this.state = {
@@ -103,8 +125,9 @@ class StockTicker extends React.Component {
              * to handle errors). If you successfully retrieve this information, you can set the state objects
              * and render it.
              */
+            this.getElementById('id');
             this.setState({showinfo: true});
-
+            this.props.onChange();
             //this.props.onChange(..);  Call this.props.onChange with the selected symbol to propagate it
             // to the App component, which will handle it via its own onChane prop,
             // ultimately  used to fetch the data for the LineChart component.
@@ -146,6 +169,7 @@ class StockTicker extends React.Component {
                     </div>
                 </div>
                 {
+
                     /**
                      *  TODO
                      *  Create a div element that shows a company information when the ticker changes. You will need to use a conditional here
