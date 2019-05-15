@@ -47,6 +47,7 @@
  */
 
 import React from 'react';
+import {Typeahead} from 'react-bootstrap-typeahead'; 
 //import {Typeahead} from 'react-bootstrap-typeahead'; UNCOMMENT this line if you are using the react-bootstrap-typeeahead component
 
 /* If you chose to use react-boostrap-typeahead, look at AsyncTypeahead for a component that 
