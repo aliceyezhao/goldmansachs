@@ -17,9 +17,48 @@
 package resources;
 
 // TODO - add your @Path here
+
+import jdk.nashorn.internal.objects.annotations.Getter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import pojo.Company;
+import javax.ws.rs.Path;
+import java.ws.rs.GET;
+
+
+//check
+@Path("company");
 public class CompanyResource {
+
+    private static List<Company> listOfCompanies;
+
+    public static void initialize() {
+        try {
+            listOfCompanies = FileHelper.getCompanyList("companyInfo.json");
+        } catch (FileNotFoundException e) {
+            //handle exception
+        } catch (IOException e) {
+            //handle exception
+        }
+    }
+
+    //have it like a property in Company Resource
+    //Starter app
+    //initialize that will create the List from file Helper
 
     // TODO - Add a @GET resource to get company data
     // Your service should return data for a given stock ticker
+    @GET
+    public Company getCompanyInfo(String comp) {
+        for (Company company: listOfCompanies) {
+            if (company.getName().equals(comp)) {
+                return company;
+            }
+        }
+        return null;
+    }
+
 
 }
