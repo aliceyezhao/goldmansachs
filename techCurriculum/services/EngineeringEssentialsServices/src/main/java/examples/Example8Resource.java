@@ -1,8 +1,14 @@
 package examples;
 
+import model.Event;
+import utility.FileHelper;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Copyright 2018 Goldman Sachs.
@@ -33,9 +39,13 @@ public class Example8Resource {
      *
      */
     @GET
-    @Path("replace this")
-    public int getWins(String country) {
-        return 0;
+    @Path("/{country}/wins")
+    public int getWins(@PathParam("country")String country) throws IOException {
+        List<Event> events = FileHelper.readAllEvents("events.json");
+        List<Event> filter = events.stream().filter(event ->
+                event.getWinningCountry().name().equalsIgnoreCase(country))
+                .collect(Collectors.toList());
+        return filter.size();
     }
 }
 

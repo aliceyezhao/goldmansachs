@@ -32,7 +32,6 @@ public class Example4SolutionResource {
     @Path("sample")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSampleEvent() throws IOException {
-
         Event event = FileHelper.readSingleEvent("single-event.json");
         return Response.ok().entity(event).build();
     }

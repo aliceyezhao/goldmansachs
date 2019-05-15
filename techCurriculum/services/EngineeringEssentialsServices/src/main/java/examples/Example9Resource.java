@@ -40,7 +40,7 @@ public class Example9Resource {
      *
      * URL (after part 2): http://localhost:8080/events/newEvent
      */
-    @Path("")
+    @Path("/events/newEvent")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createEvent(Event newEvent) throws IOException{
         final String filename = "test-create-event.json";

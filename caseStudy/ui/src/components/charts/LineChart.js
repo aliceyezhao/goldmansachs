@@ -23,34 +23,96 @@ class LineChart extends React.Component {
     }
 
     componentDidMount() {
-/*        Highcharts.chart('chart', {
+        Highcharts.chart('chart', {
 
-            TODO
-            Create a highcharts line chart of your choosing (e.g. https://www.highcharts.com/demo/line-time-series for a demo).
-
+            // TODO
+            // Create a highcharts line chart of your choosing (e.g. 
+            // https://www.highcharts.com/demo/line-time-series for a demo).
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Stock'
+            },
+            // subtitle: {
+            //     text: document.ontouchstart === undefined ?
+            //         'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            // },
+            xAxis: {
+                type: 'datetime',
+                title: {
+                    text: 'Date'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Price'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
             series: [{
                 name: 'Prices',
                 data: this.props.data
             }]
         });
-*/
+
+    }
+
+   unpack_data(data){
+        new_data = []
+        data.map((dict)=>{
+            Object.keys(dict).map((key, index)=>{ 
+              new_data.push([new Date(key) , dict[key]])
+            })
+        })
+
+        return new_data
     }
 
     componentWillReceiveProps(props) {
         console.log("New data received to redraw chart.");
-        
+
         /**
          * TODO
          * Parse the data received from props, a Javascript object, to map to a Javascript array
          * required by the type of line chart chosen and set it in the series. Use Date.UTC(..)
          * to create the x-axis.
          */
-        
+
         /**
          * TODO
          * Uncomment the line below to pass the data be displayed to the series
-         * this.chart.series[0].setData(data);
          */
+         this.chart.series[0].setData(unpack_data(props.data));
+         
     }
 
     componentWillUnmount() {
@@ -59,8 +121,7 @@ class LineChart extends React.Component {
 
 
     render() {
-        return (
-            <div id='chart'></div>
+        return ( <div id='chart'> </div>
         )
     }
 }

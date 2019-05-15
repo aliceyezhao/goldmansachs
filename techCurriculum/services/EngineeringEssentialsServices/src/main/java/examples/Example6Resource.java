@@ -2,12 +2,14 @@ package examples;
 
 
 import model.Country;
+import utility.FileHelper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,11 +38,14 @@ public class Example6Resource {
      *
      */
     @GET
-    @Path("replace")
+    @Path("allParticipatingCountries")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllParticipatingCountries() {
+    public Response getAllParticipatingCountries() throws IOException {
+        List<Country> participatingCountries = FileHelper.
+                readParticipatingCountries("allParticipatingCountries.json");
 
-        List<Country> participatingCountries = null;
-        return null;
+        return Response.ok()
+                .entity(participatingCountries)
+                .build();
     }
 }

@@ -2,6 +2,7 @@ package utility;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.Country;
 import model.Event;
 import model.Team;
 
@@ -63,6 +64,12 @@ public class FileHelper {
         return mapper.readValue(inputStream, new TypeReference<Team>() {});
     }
 
+    public static List<Country> readParticipatingCountries(String fileName) throws IOException {
+
+        InputStream inputStream = new FileInputStream(("data" + File.separatorChar + fileName));
+//        InputStream resourceAsStream = FileHelper.class.getClassLoader().getResourceAsStream(fileName);
+        return mapper.readValue(inputStream, new TypeReference<List<Country>>() {});
+    }
     public static void writeTeamsToFile(String fileName, List<Team> teams) throws IOException {
 
         mapper.writerWithDefaultPrettyPrinter()

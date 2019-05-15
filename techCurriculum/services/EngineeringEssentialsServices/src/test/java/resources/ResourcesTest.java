@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
+import static model.Country.Portugal;
 import static model.Country.UnitedStates;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static utility.FileHelper.DATEFORMAT;
 
 /**
@@ -50,11 +50,11 @@ public class ResourcesTest extends JerseyTest {
                 Example5Resource.class,
                 Example6Resource.class,
                 Example7Resource.class,
-                Example8Resource.class,
-                Example9Resource.class,
-                Example10Resource.class,
-                Example11Resource.class,
-                Example12Resource.class
+                Example8Resource.class
+//                Example9Resource.class,
+//                Example10Resource.class,
+//                Example11Resource.class,
+//                Example12Resource.class
         );
     }
 
@@ -71,27 +71,33 @@ public class ResourcesTest extends JerseyTest {
 
         Response response = target().path("response/test/fixed").request().get();
         String stringResponse = target().path("response/test/fixed").request().get(String.class);
+//        System.out.println(stringResponse);
         assertEquals(expected.getStatus(), response.getStatus());
         assertEquals(expected.getEntity(), stringResponse);
     }
 
     @Test
     public void testExample4() throws ParseException {
-        Event event = new Event();
-
         /**
          *  Use the setter methods to create an identical event to single-event.json
          *  and assert that they are equal
          *
          */
 
+        Event event = new Event();
+        event.setAwayCountry(Country.Australia);
+        event.setHomeCountry(Portugal);
+        event.setWinningCountry(Portugal);
+        event.setLosingCountry(Country.Australia);
+        event.setWinningScore(22);
+        event.setLosingScore(4);
+        event.setEventType(EventType.WaterPolo);
+
         Date date = DATEFORMAT.parse("2018-02-27");
         event.setDate(date);
 
         Event response = target().path("events/sample").request().get(Event.class);
-
-//        assertEquals();
-        Assert.fail("Remove this line once you write the test");
+        assertEquals(event, response);
 
     }
 
@@ -113,9 +119,10 @@ public class ResourcesTest extends JerseyTest {
         // Add a test to make sure that all the participating countries are returned correctly
         // The only country not participating is Portugal
         Set<Country> checkParticipatingCountries = EnumSet.complementOf(EnumSet.of(Country.Portugal));
+        Set<Country> getParticipatingCountries = target().path("events/allParticipatingCountries").request().get(Set.class);
 
-
-        Assert.fail("Remove this line once you write the test");
+        assertEquals(checkParticipatingCountries.size(), getParticipatingCountries.size());
+        assertFalse(getParticipatingCountries.contains(Portugal));
     }
 
     @Test

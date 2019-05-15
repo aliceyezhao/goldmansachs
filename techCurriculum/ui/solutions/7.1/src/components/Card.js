@@ -26,7 +26,7 @@ function Card(props) {
   )
   return (
     <div className='card'>
-      <User name={props.author}/>
+      <User name={props.author} />
       <div className='card-main'>
         <Message text={props.text}/>
       </div>
