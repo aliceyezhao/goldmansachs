@@ -38,7 +38,7 @@ class Date extends React.Component {
         this.state = {
             date: moment()
         };
-
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -83,4 +83,5 @@ class Date extends React.Component {
 
 }
 
+export default Date
 // Don't forget to export your component!

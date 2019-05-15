@@ -16,6 +16,7 @@
 
 import React from 'react';
 import './style/App.css';
+import Date from "./components/Date"
 
 /**
  * TODO:
@@ -31,13 +32,25 @@ class App extends React.Component{
              * TODO
              * Add state objects for the user inputs and anything else you may need to render the highchart.
              */
+            start:undefined,
+            end:undefined,
+            stock_ticker: undefined
         };
 
     }
 
 
+    handleChangeStockTicker(stock_ticker){
+      this.setState({stock_ticker:stock_ticker})
+    }
 
+    handleChangeDateStart(start){
+      this.setState({start:start})
+    }
 
+    handleChangeDateEnd(end){
+      this.setState({end:end})
+    }
 
     render () {
       return (
@@ -67,7 +80,7 @@ class App extends React.Component{
                    *  be maintained as a state object.
                    *  http://reactpatterns.com/#conditional-rendering
                    */}
-
+          <Date onChange = {this.handleChangeDateStart.bind(this)}/>
           </div>
       );
     }
