@@ -16,7 +16,6 @@
 
 import React from 'react';
 import LineChart from './charts/LineChart';
-import axios from 'axios';
 
 class Charts extends React.Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class Charts extends React.Component {
         this.state = {
             //date:'', line:'', posts=[], datestamp:undefined};
             //this.handleStockChange= this.handleStockChange.bind(this);
-            data = undefined
+            data: undefined
         };
             
         this.dataSourceHelper = this.dataSourceHelper.bind(this);
