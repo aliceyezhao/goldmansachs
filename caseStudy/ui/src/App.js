@@ -16,7 +16,9 @@
 
 import React from 'react';
 import './style/App.css';
-import Date from "./components/Date"
+import StockTicker from './components/StockTicker';
+import Date from './components/Date';
+import Charts from './components/Charts';
 
 /**
  * TODO:
@@ -37,6 +39,7 @@ class App extends React.Component{
             stock_ticker: undefined
         };
 
+
     }
 
 
@@ -55,7 +58,13 @@ class App extends React.Component{
     render () {
       return (
           <div className="page-display">
+          <h1>Group 1's Stock Ticker</h1>
               <div className="input">
+
+              <StockTicker />
+
+              
+              
               {/**
                * TODO
                * Render the StockTicker and Date components. You can use the date component twice
@@ -65,10 +74,14 @@ class App extends React.Component{
                * highchart should be displayed by changing the state of that boolean.
                * Don't forget to bind these methods!
                */}
-
+               
                 <div className="date-range">
-
+                {/* <Date name="start Date" onChange={this.props.onChange}/>
+              <Date name="End Date" onChange={this.props.onChange}/> */}
                 </div>
+                
+                
+               
               </div>
 
 
@@ -80,7 +93,13 @@ class App extends React.Component{
                    *  be maintained as a state object.
                    *  http://reactpatterns.com/#conditional-rendering
                    */}
+<<<<<<< HEAD
           <Date onChange = {this.handleChangeDateStart.bind(this)}/>
+=======
+                    <div>
+                    <Charts />
+                    </div>
+>>>>>>> maria
           </div>
       );
     }

@@ -87,14 +87,14 @@ class LineChart extends React.Component {
     }
 
   unpack_data(data){
-        new_data = []
+        var new_data = []
         data.map((dict)=>{
             Object.keys(dict).map((key, index)=>{ 
-                temp_key = key.split("/")
-                year = +temp_key[2]
-                month = +temp_key[0] - 1
-                day = +temp_key[1]
-                new_key = Date.UTC(year, month, day,0, 0,0,0 )
+                let temp_key = key.split("/")
+                let year = +temp_key[2]
+                let month = +temp_key[0] - 1
+                let day = +temp_key[1]
+                let new_key = Date.UTC(year, month, day,0, 0,0,0 )
                 new_data.push([new_key , dict[key]])
             })
         })
@@ -118,7 +118,7 @@ class LineChart extends React.Component {
          * TODO
          * Uncomment the line below to pass the data be displayed to the series
          */
-         this.chart.series[0].setData(unpack_data(props.data));
+         this.chart.series[0].setData(this.unpack_data(props.data));
          
     }
 
@@ -134,3 +134,5 @@ class LineChart extends React.Component {
 }
 
 // Don't forget to export your component!
+
+export default LineChart

@@ -59,20 +59,19 @@ class Date extends React.Component {
     render() {
         return (
             <div className="date">
-                {
-                    /**
+                
+                    { /**
                      * TODO
                      * Render the date picker component with a date format of "MM/DD/YYYY".
                      * Add a props for an onChange method. Don't forget to bind this method!
                      * This method should set the state to the date argument passed in the parameter.
-                     */
+                     */ }
                     <DatePicker
                     selected={ this.state.date }
                     onChange={ this.handleChange }
                     name = "StartDate"
-                    dateFormat="MM/DD/YYYY"
-                  />
-                }
+                    dateFormat="MM/DD/YYYY"/>
+                
                 <p><strong>{this.props.text}</strong></p>
                 <div className="date-input">
                 </div>
