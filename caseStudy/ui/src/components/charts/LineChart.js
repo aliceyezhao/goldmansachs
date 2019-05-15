@@ -86,14 +86,21 @@ class LineChart extends React.Component {
 
     }
 
-   unpack_data(data){
+  unpack_data(data){
         new_data = []
         data.map((dict)=>{
             Object.keys(dict).map((key, index)=>{ 
-              new_data.push([new Date(key) , dict[key]])
+                temp_key = key.split("/")
+                year = +temp_key[2]
+                month = +temp_key[0] - 1
+                day = +temp_key[1]
+                new_key = Date.UTC(year, month, day,0, 0,0,0 )
+                new_data.push([new_key , dict[key]])
             })
         })
-
+        
+        // return sorted data
+        new_data.sort((a, b)=>{return a[0] - b[0]})
         return new_data
     }
 
