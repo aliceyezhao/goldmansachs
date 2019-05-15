@@ -16,6 +16,7 @@
 
 import React from 'react';
 import './style/App.css';
+import StockTicker from './components/StockTicker';
 
 /**
  * TODO:
@@ -33,6 +34,7 @@ class App extends React.Component{
              */
         };
 
+
     }
 
 
@@ -43,6 +45,8 @@ class App extends React.Component{
       return (
           <div className="page-display">
               <div className="input">
+
+              <StockTicker > </StockTicker>
               {/**
                * TODO
                * Render the StockTicker and Date components. You can use the date component twice
