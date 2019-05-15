@@ -15,12 +15,18 @@
  */
 
 package resources;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 // TODO - add your @Path here
+@Path("stocks")
+
 public class StockResource {
 
     // TODO - Add a @GET resource to get stock data
     // Your service should return data based on 3 inputs
     // Stock ticker, start date and end date
+    @GET
+    @Path()
 
 }

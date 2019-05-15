@@ -15,6 +15,7 @@
  */
 
 package pojo;
+import java.util.*;
 
 /**
  * This class will define a company's end-of-day stock price
@@ -26,5 +27,53 @@ public class Stock {
     // Define the attributes of a stock price based on the
     // provided data in resources/data
 
+    private String name;
+    private Map<Date, Float> dailyClosePrice;
     // TODO - add getter and setter methods for your attributes
+
+    public Stock (String name, Map<Date, Float> dailyClosePrice) {
+        this.name = name;
+        Map<Date, Float> map = new TreeMap<Date, Float>(dailyClosePrice);
+        this.dailyClosePrice = map;
+    }
+
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Float getPrice(Date d) {
+        return dailyClosePrice.get(d);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Float> getPriceList() {
+
+        ArrayList<Float> prices =  new ArrayList<Float>();
+        for (Float p : this.dailyClosePrice.values()) {
+            prices.add(p);
+        }
+        return prices;
+    }
+
+    public ArrayList<Date> getDateList() {
+        ArrayList<Date> dates =  new ArrayList<Date>();
+        for (Date d : this.dailyClosePrice.keySet()) {
+            dates.add(d);
+        }
+        return dates;
+    }
+
+    public void setDailyClosePrice(Map<Date, Float> map) {
+        this.dailyClosePrice = map;
+    }
+
+    public void putDailyClosePrice(Date d, Float price) {
+        this.dailyClosePrice.put(d, price);
+        Map<Date, Float> map = new TreeMap<Date, Float>(dailyClosePrice);
+        this.dailyClosePrice = map;
+    }
 }
