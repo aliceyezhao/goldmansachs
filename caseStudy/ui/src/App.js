@@ -59,11 +59,10 @@ class App extends React.Component{
       return (
           <div className="page-display">
           <h1>Group 1's Stock Ticker</h1>
-              <div className="input">
-
-              <StockTicker />
+              <div className="input">             
 
               
+              <StockTicker />
               
               {/**
                * TODO
@@ -76,8 +75,8 @@ class App extends React.Component{
                */}
                
                 <div className="date-range">
-                {/* <Date name="start Date" onChange={this.props.onChange}/>
-              <Date name="End Date" onChange={this.props.onChange}/> */}
+                  <Date onChange = {this.handleChangeDateStart.bind(this)}/>
+                  <Date onChange = {this.handleChangeDateStart.bind(this)}/>
                 </div>
                 
                 
@@ -93,13 +92,7 @@ class App extends React.Component{
                    *  be maintained as a state object.
                    *  http://reactpatterns.com/#conditional-rendering
                    */}
-<<<<<<< HEAD
-          <Date onChange = {this.handleChangeDateStart.bind(this)}/>
-=======
-                    <div>
-                    <Charts />
-                    </div>
->>>>>>> maria
+                   <Charts />
           </div>
       );
     }

@@ -29,6 +29,7 @@
   flex-direction:row;
   margin-left: 2em;
   float:right;
+  height: 20px;
 }
 
 .stockticker {
