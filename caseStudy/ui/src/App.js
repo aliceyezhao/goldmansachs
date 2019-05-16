@@ -16,6 +16,9 @@
 
 import React from 'react';
 import './style/App.css';
+import StockTicker from './components/StockTicker';
+import Date from './components/Date';
+import Charts from './components/Charts';
 
 /**
  * TODO:
@@ -31,18 +34,41 @@ class App extends React.Component{
              * TODO
              * Add state objects for the user inputs and anything else you may need to render the highchart.
              */
+            start:undefined,
+            end:undefined,
+            ticker: undefined
         };
 
+        this.handleChangeDateEnd = this.handleChangeDateEnd.bind(this)
+        this.handleChangeDateStart = this.handleChangeDateStart.bind(this)
+        this.handleChangeStockTicker = this.handleChangeStockTicker.bind(this)
     }
 
 
+    handleChangeStockTicker(ticker){
+      this.setState({ticker:ticker})
+      console.log("ticker")
+    }
 
+    handleChangeDateStart(start){
+      this.setState({start:start})
+      console.log("start")
+    }
 
+    handleChangeDateEnd(end){
+      this.setState({end:end})
+      console.log("end")
+    }
 
     render () {
       return (
           <div className="page-display">
-              <div className="input">
+          <h1>Group 1's Stock Ticker</h1>
+              <div className="input">             
+
+              
+              <StockTicker onChange={this.handleChangeStockTicker}/>
+              
               {/**
                * TODO
                * Render the StockTicker and Date components. You can use the date component twice
@@ -52,10 +78,14 @@ class App extends React.Component{
                * highchart should be displayed by changing the state of that boolean.
                * Don't forget to bind these methods!
                */}
-
+               
                 <div className="date-range">
-
+                  <Date onChange = {this.handleChangeDateStart}/>
+                  <Date onChange = {this.handleChangeDateEnd}/>
                 </div>
+                
+                
+               
               </div>
 
 
@@ -67,7 +97,7 @@ class App extends React.Component{
                    *  be maintained as a state object.
                    *  http://reactpatterns.com/#conditional-rendering
                    */}
-
+                   <Charts ticker={this.state.ticker} start={this.state.start} end={this.state.end}/>
           </div>
       );
     }
