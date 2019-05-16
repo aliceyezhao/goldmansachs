@@ -106,7 +106,8 @@ class StockTicker extends React.Component {
                 city: 'Mountain View',
                 state: 'CA',
                 sector: 'Technology',
-                industry: 'Design'
+                industry: 'Design',
+                numberOfEmployees:undefined
             }
             /**
              * TODO
@@ -117,8 +118,27 @@ class StockTicker extends React.Component {
     }
 
     handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
+        this.setState({ selectedOption : selectedOption });    
+        fetch("")
+            .then((response) => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    symbol : data.symbol,
+                    name : data.name,
+                    city : data.headquartersCity,
+                    state : data.headquartersStateOrCountry,
+                    numberOfEmployees : data.numberOfEmployees,
+                    sector : data.sector,
+                    industry : data.industry
+                })
+            }).catch(error => {
+                console.log(error);
+            });
+
+            this.props.onChange(selectedOption.label)
       }
 
     // handleChange(event) {

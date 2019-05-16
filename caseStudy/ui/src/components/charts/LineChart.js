@@ -23,7 +23,7 @@ class LineChart extends React.Component {
     }
 
     componentDidMount() {
-        Highcharts.chart('chart', {
+        this.chart = Highcharts.chart('chart', {
 
             // TODO
             // Create a highcharts line chart of your choosing (e.g. 
@@ -86,9 +86,9 @@ class LineChart extends React.Component {
 
     }
 
-  unpack_data(data){
+  unpack_data(_data){
         var new_data = []
-        data.map((dict)=>{
+        _data.map((dict)=>{
             Object.keys(dict).map((key, index)=>{ 
                 let temp_key = key.split("/")
                 let year = +temp_key[2]

@@ -36,23 +36,28 @@ class App extends React.Component{
              */
             start:undefined,
             end:undefined,
-            stock_ticker: undefined
+            ticker: undefined
         };
 
-
+        this.handleChangeDateEnd = this.handleChangeDateEnd.bind(this)
+        this.handleChangeDateStart = this.handleChangeDateStart.bind(this)
+        this.handleChangeStockTicker = this.handleChangeStockTicker.bind(this)
     }
 
 
-    handleChangeStockTicker(stock_ticker){
-      this.setState({stock_ticker:stock_ticker})
+    handleChangeStockTicker(ticker){
+      this.setState({ticker:ticker})
+      console.log("ticker")
     }
 
     handleChangeDateStart(start){
       this.setState({start:start})
+      console.log("start")
     }
 
     handleChangeDateEnd(end){
       this.setState({end:end})
+      console.log("end")
     }
 
     render () {
@@ -62,7 +67,7 @@ class App extends React.Component{
               <div className="input">             
 
               
-              <StockTicker />
+              <StockTicker onChange={this.handleChangeStockTicker}/>
               
               {/**
                * TODO
@@ -75,8 +80,8 @@ class App extends React.Component{
                */}
                
                 <div className="date-range">
-                  <Date onChange = {this.handleChangeDateStart.bind(this)}/>
-                  <Date onChange = {this.handleChangeDateStart.bind(this)}/>
+                  <Date onChange = {this.handleChangeDateStart}/>
+                  <Date onChange = {this.handleChangeDateEnd}/>
                 </div>
                 
                 
@@ -92,7 +97,7 @@ class App extends React.Component{
                    *  be maintained as a state object.
                    *  http://reactpatterns.com/#conditional-rendering
                    */}
-                   <Charts />
+                   <Charts ticker={this.state.ticker} start={this.state.start} end={this.state.end}/>
           </div>
       );
     }

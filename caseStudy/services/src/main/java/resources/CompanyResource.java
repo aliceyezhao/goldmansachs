@@ -16,7 +16,10 @@
 
 package resources;
 
+import javax.ws.rs.Path;
+
 // TODO - add your @Path here
+@Path("company")
 public class CompanyResource {
 
     // TODO - Add a @GET resource to get company data
