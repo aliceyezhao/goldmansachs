@@ -99,7 +99,7 @@ class StockTicker extends React.Component {
                 
         this.state = {
             showCompanyInfo: false, //TODO: Use this boolean to determine if the company information should be rendered
-            selectedOption: null,
+            selectedOption: "APPL",
             company :{
                 symbol: 'APPL',
                 name: 'Apple Inc.',
@@ -118,7 +118,8 @@ class StockTicker extends React.Component {
     }
 
     handleChange = (selectedOption) => {
-        this.setState({ selectedOption : selectedOption });    
+        this.setState({ selectedOption : selectedOption });  
+        //TODO: add server endpoint  
         fetch("")
             .then((response) => {
                 return response.json();

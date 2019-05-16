@@ -40,13 +40,23 @@ class Charts extends React.Component {
         this.dataSourceHelper(nextProps);
     }
 
-    dataSourceHelper(props) {        
+    dataSourceHelper(props) {
+        //convert date to a form the server understands     
+        let format_date = (d)=>{
+           let  y = d.getFullYear()
+           let m = d.getMonth()+1
+           let dd= d.getDate()
+
+            return m+"-"+dd+"-"+y
+        }   
         console.log("Fetch data when company, start or end changes");
         props = props || this.props;
         let ticker = props.ticker
-        let start = props.start.replace(/\//,'-')
-        let end = props.end.replace(/\//,'-')
+        let start = format_date(props.start["_d"])
+        let end = format_date(props.end["_d"])
+
         console.log(`/${ticker}/${start}/${end}`)
+        //TODO: add server endpoint
         fetch(`/${ticker}/${start}/${end}`)
         .then((response) => {
             return response.json();

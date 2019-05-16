@@ -20,14 +20,6 @@ import App from './App';
 import './style/index.css';
 
 ReactDOM.render(
-
-  //React.createElement('h1', null, "Cards");
-  //React.createElement('h3', null, "Share your ideas. ");
-  //<App />,
-  <div>
-  <h1> Cards </h1>
-  <h3> Share your ideas </h3>
-  </div>,
+  <App />,
   document.getElementById('root')
-
 );
