@@ -16,14 +16,44 @@
 
 package resources;
 
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Test;
+import pojo.Company;
+import pojo.Stock;
+
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Application;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
 /**
  * Write your tests for the Stock Resource here
  */
-public class StockResourceTest {
+public class StockResourceTest extends JerseyTest {
 
     // TODO - write a test for each method in the CompanyResource class
     // Think about both positive and negative test cases:
     // What happens if no inputs are passed?
     // What happens if the input is null?
+
+    @Override
+    protected Application configure() {
+        return new ResourceConfig(
+                StockResource.class
+        );
+    }
+
+    @Test
+    public void test() {
+        WebTarget target = target("company/ADBE/2-16-2019/4-4-2019");
+        Stock response = target.request().get(Stock.class);
+        assertEquals("ADBE",response.getName());
+        assertFalse(response.getDailyClosePrice().get(0).isEmpty());
+    }
 
 }

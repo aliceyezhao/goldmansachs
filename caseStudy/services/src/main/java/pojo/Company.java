@@ -37,73 +37,63 @@ public class Company {
     private String sector;
     private String industry;
 
-    //Main constructor
-    public Company (String symbol, String name, String hqCity, String hqStateOrCountry, int numberOfEmployees, String sector, String industry) {
-        this.symbol = symbol;
-        this.name = name;
-        this.headquartersCity = hqCity;
-        this.headquartersStateOrCountry = hqStateOrCountry;
-        this.numberOfEmployees = numberOfEmployees;
-        this.sector = sector;
-        this.industry = industry;
+    public Company(){
+
     }
 
-    //Basic setters methods
-    public void setHqCity(String hqCity) {
-        this.headquartersCity = hqCity;
+    public String getSymbol() {
+        return symbol;
     }
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSector(String sector) {
-        this.sector = sector;
+    public String getHeadquartersCity() {
+        return headquartersCity;
+    }
+
+    public void setHeadquartersCity(String headquartersCity) {
+        this.headquartersCity = headquartersCity;
+    }
+
+    public String getHeadquartersStateOrCountry() {
+        return headquartersStateOrCountry;
+    }
+
+    public void setHeadquartersStateOrCountry(String headquartersStateOrCountry) {
+        this.headquartersStateOrCountry = headquartersStateOrCountry;
+    }
+
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
     }
 
     public void setNumberOfEmployees(int numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
 
-    public void setHqStateOrCountry(String hqStateOrCountry) {
-        this.headquartersStateOrCountry = hqStateOrCountry;
-    }
-
-
-    //Basic getter methods
-    public String getIndustry() {
-        return this.industry;
-    }
-
     public String getSector() {
-        return this.sector;
+        return sector;
     }
 
-    public int getNumberOfEmployees() {
-        return this.numberOfEmployees;
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 
-    public String getHqStateOrCountry() {
-        return this.getHqStateOrCountry();
+    public String getIndustry() {
+        return industry;
     }
 
-    public String getHqCity() {
-        return this.headquartersCity;
-    }
-
-    public String getName() {
-        return this.getName();
-    }
-
-    public String getSymbol() {
-        return this.getSymbol();
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 }

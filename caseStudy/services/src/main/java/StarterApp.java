@@ -28,7 +28,6 @@ public class StarterApp extends Application<Configuration> {
 
 
     public static void main(String[] args) throws Exception {
-
         StarterApp restServer = new StarterApp();
         restServer.run(args);
     }

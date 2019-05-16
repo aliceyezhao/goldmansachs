@@ -32,27 +32,30 @@ public class Stock {
     // TODO - add getter and setter methods for your attributes
 
     private String name;
-    private List<HashMap<String, Double>> prices;
+    private List<HashMap<String, Double>> dailyClosePrice;
 
-    public Stock(String name, List<HashMap<String, Double>> prices) {
+    public Stock(){
+
+    }
+
+    public Stock(String name, List<HashMap<String, Double>> dailyClosePrice) {
         this.name = name;
-        this.prices = prices;
+        this.dailyClosePrice = dailyClosePrice;
     }
 
     public String getName() {
-        return this.getName();
+        return name;
     }
-
-    public List<HashMap<String, Double>> getCompleteListOfPrices() {
-        return prices;
-    }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrices(List<HashMap<String, Double>> prices) {
-        this.prices = prices;
+    public List<HashMap<String, Double>> getDailyClosePrice() {
+        return dailyClosePrice;
+    }
+
+    public void setDailyClosePrice(List<HashMap<String, Double>> dailyClosePrice) {
+        this.dailyClosePrice = dailyClosePrice;
     }
 }
