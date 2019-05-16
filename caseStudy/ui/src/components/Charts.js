@@ -44,8 +44,8 @@ class Charts extends React.Component {
         console.log("Fetch data when company, start or end changes");
         props = props || this.props;
         let ticker = props.ticker
-        let start = props.start
-        let end = props.end
+        let start = props.start.replace(/\//,'-')
+        let end = props.end.replace(/\//,'-')
         console.log(`/${ticker}/${start}/${end}`)
         fetch(`/${ticker}/${start}/${end}`)
         .then((response) => {
