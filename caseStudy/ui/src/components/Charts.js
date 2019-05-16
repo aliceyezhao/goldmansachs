@@ -41,7 +41,7 @@ class Charts extends React.Component {
 
         console.log(`localhost:8080/company/${ticker}/${start}/${end}`)
         //TODO: add server endpoint
-        fetch(`/${ticker}/${start}/${end}`)
+        fetch(`localhost:8080/company/${ticker}/${start}/${end}`)
         .then((response) => {
             return response.json();
         })
