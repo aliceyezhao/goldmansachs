@@ -120,8 +120,10 @@ class StockTicker extends React.Component {
     handleChange = (selectedOption) => {
         this.setState({ selectedOption : selectedOption });  
         //TODO: add server endpoint  
-        fetch("")
+        let endpoint = `http://localhost:8080/companyInfo/${selectedOption.label}`;
+        fetch(endpoint, {method: 'GET', mode: 'no-cors'})
             .then((response) => {
+                console.log(response)
                 return response.json();
             })
             .then(data => {

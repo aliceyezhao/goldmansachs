@@ -18,6 +18,7 @@
 .date {
   display: flex;
   flex-direction:row;
+  height: 20px;
 }
 .date-input {
   margin-left: 1em;

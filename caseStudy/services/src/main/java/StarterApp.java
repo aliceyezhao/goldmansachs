@@ -19,8 +19,6 @@ public class StarterApp extends Application<Configuration> {
 
     @Override
     public void initialize(Bootstrap<Configuration> b) {
-//        CompanyResource.initialize();
-//        StockResource.initialize();
     }
 
     @Override

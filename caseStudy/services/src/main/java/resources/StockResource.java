@@ -60,8 +60,9 @@ public class StockResource {
 
     //TO do:
     //Figure out import errors
-    @Path("{name}/{start}/{end}")
+
     @GET
+    @Path("{name}/{start}/{end}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStock(@PathParam("name") String name, @PathParam("start") String start, @PathParam("end") String end) {
         Stock current = null;
