@@ -24,12 +24,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import pojo.Company;
+
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import java.ws.rs.GET;
 
 
 //check
-@Path("company");
+@Path("company")
 public class CompanyResource {
 
     private static List<Company> listOfCompanies;

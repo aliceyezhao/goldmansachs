@@ -16,15 +16,15 @@
 
 package resources;
 
-import pojo.DailyStock;
 import pojo.Stock;
 
 import java.util.*;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import java.ws.rs.GET;
+import javax.ws.rs.PathParam;
 
 // TODO - add your @Path here
 @Path("company")
@@ -44,7 +44,7 @@ public class StockResource {
 
     // TODO - Add a @GET resource to get stock data
     // Your service should return data based on 3 inputs
-    // Stock ticker, start date and end date
+    // Stock ticker, start getDate and end getDate
 
 
     //TO do:
@@ -52,7 +52,7 @@ public class StockResource {
     @Path("stockdata/{name}/{start}/{end}")
     @GET
     public Stock getStock(@PathParam("name") String name, @PathParam("start") String start, @PathParam("end")String end) {
-        Stock current = ;
+        Stock current = null;
 
         for (Stock stock: listOfStockPrices) {
             if (stock.getName().equals(name)) {
@@ -60,44 +60,42 @@ public class StockResource {
             }
         }
         if (current != null) {
-            List<HashMap<String, Double>> subList = new ArrayList<HashMap<String, Double>>();
+            HashMap<String, Double> subList = new HashMap<String, Double>();
             List<HashMap<String, Double>> completeList = current.getCompleteListOfPrices();
-            for (HashMap<String, Double> dailyPrice: completeList) {
+            for (HashMap<String, Double> hashMap: completeList) {
 
                 //Figure out a way to retrieve the only key from hashmap
                 //Assuming HashMap has length of 1
-                Set<String> onlyKey = dailyPrice.keySet();
+                for(HashMap.Entry<String,Double> dailyPrice: hashMap.entrySet())
+                {
+                    String onlyKey = dailyPrice.getKey();
 
-                //String curentDate = onlyK
-
-                        //...
-                if (checkWithinRange(start, end, currentDate)) {
-                    subList.add(dailyPrice);
+                    //...
+                    if (checkWithinRange(start, end, onlyKey)) {
+                        subList.put(dailyPrice.getKey(), dailyPrice.getValue());
+                    }
                 }
             }
-            Stock modifiedStock = new Stock(current.getName(), subList);
-            return modifiedStock;
+            List<HashMap<String,Double>> list = new ArrayList<HashMap<String, Double>>();
+            list.add(subList);
+            return new Stock(current.getName(), list);
         }
         return null;
     }
 
-    private Date date(String currentDate) {
-        String[] arr_start = currentDate.split("/");
+    private Date getDate(String date) {
+        String[] arr_start = date.split("/");
         int year = Integer.parseInt(arr_start[2]);
         int day = Integer.parseInt(arr_start[1]);
         int month = Integer.parseInt(arr_start[0]);
-        Date date = new Date(year,month - 1,day);
-        return date;
+        return new Date(year,month - 1,day);
     }
 
     private boolean checkWithinRange(String start, String end, String current) {
-        Date sDate = date(start);
-        Date eDate = date(end);
-        Date cDate = date(current);
-        if ((sDate.compareTo(cDate) <= 0) && (eDate.compareTo(cDate) >= 0)) {
-            return true;
-        }
-        return false;
+        Date sDate = getDate(start);
+        Date eDate = getDate(end);
+        Date cDate = getDate(current);
+        return (sDate.compareTo(cDate) <= 0) && (eDate.compareTo(cDate) >= 0);
     }
 
 

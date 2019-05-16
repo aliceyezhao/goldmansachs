@@ -31,8 +31,8 @@ public class Stock {
 
     // TODO - add getter and setter methods for your attributes
 
-    String name;
-    List<HashMap<String, Double>> prices;
+    private String name;
+    private List<HashMap<String, Double>> prices;
 
     public Stock(String name, List<HashMap<String, Double>> prices) {
         this.name = name;

@@ -16,6 +16,8 @@
 
 package resources;
 
+import org.junit.Test;
+
 /**
  * Write your tests for the Company Resource here
  */
@@ -25,5 +27,9 @@ public class CompanyResourceTest {
     // Think about both positive and negative test cases:
     // What happens if no inputs are passed?
     // What happens if the input is null?
+    @Test
+    public void testGetCompany(){
+
+    }
 
 }
