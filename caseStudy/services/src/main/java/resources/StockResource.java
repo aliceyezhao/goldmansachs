@@ -50,7 +50,7 @@ public class StockResource {
     }
 
     public StockResource() {
-        StockResource.initialize();
+//        StockResource.initialize();
     }
 
     // TODO - Add a @GET resource to get stock data

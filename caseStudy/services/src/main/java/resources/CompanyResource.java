@@ -42,7 +42,7 @@ public class CompanyResource {
     public static final String FILE_PATH = "C:/Users/chubi/Documents/GMS/goldmansachs/caseStudy/services/src/main/resources/data/companyInfo.json";
 
     public CompanyResource() {
-        CompanyResource.initialize();
+//        CompanyResource.initialize();
     }
 
     public static void initialize() {
