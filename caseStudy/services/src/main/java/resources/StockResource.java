@@ -25,6 +25,9 @@ import java.io.FileNotFoundException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 // TODO - add your @Path here
 @Path("company")
@@ -49,9 +52,10 @@ public class StockResource {
 
     //TO do:
     //Figure out import errors
-    @Path("stockdata/{name}/{start}/{end}")
+    @Path("{name}/{start}/{end}")
     @GET
-    public Stock getStock(@PathParam("name") String name, @PathParam("start") String start, @PathParam("end")String end) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStock(@PathParam("name") String name, @PathParam("start") String start, @PathParam("end")String end) {
         Stock current = null;
 
         for (Stock stock: listOfStockPrices) {
@@ -69,8 +73,6 @@ public class StockResource {
                 for(HashMap.Entry<String,Double> dailyPrice: hashMap.entrySet())
                 {
                     String onlyKey = dailyPrice.getKey();
-
-                    //...
                     if (checkWithinRange(start, end, onlyKey)) {
                         subList.put(dailyPrice.getKey(), dailyPrice.getValue());
                     }
@@ -78,9 +80,9 @@ public class StockResource {
             }
             List<HashMap<String,Double>> list = new ArrayList<HashMap<String, Double>>();
             list.add(subList);
-            return new Stock(current.getName(), list);
+            return Response.ok().entity(new Stock(current.getName(), list)).build();
         }
-        return null;
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     private Date getDate(String date) {

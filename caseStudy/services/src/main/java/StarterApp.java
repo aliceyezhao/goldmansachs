@@ -22,7 +22,8 @@ public class StarterApp extends Application<Configuration> {
 
     @Override
     public void run(Configuration c, Environment e) throws Exception {
-
+        e.jersey().register(new CompanyResource());
+        e.jersey().register(new StockResource());
     }
 
 
@@ -30,8 +31,6 @@ public class StarterApp extends Application<Configuration> {
 
         StarterApp restServer = new StarterApp();
         restServer.run(args);
-
-        System.out.println("Go to localhost:8080/hello/ok in your browser.");
     }
 
 }
