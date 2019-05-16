@@ -9,5 +9,8 @@
         <module name="stock-visualization-app" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="stock-visualization-app" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

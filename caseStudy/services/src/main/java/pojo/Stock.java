@@ -16,10 +16,13 @@
 
 package pojo;
 
+import java.util.*;
+
 /**
  * This class will define a company's end-of-day stock price
  * Look at resources/data/historicalStockData.json
  */
+//Done
 public class Stock {
 
     // TODO - Think back to your modelling session
@@ -27,4 +30,32 @@ public class Stock {
     // provided data in resources/data
 
     // TODO - add getter and setter methods for your attributes
+
+    private String name;
+    private List<HashMap<String, Double>> dailyClosePrice;
+
+    public Stock(){
+
+    }
+
+    public Stock(String name, List<HashMap<String, Double>> dailyClosePrice) {
+        this.name = name;
+        this.dailyClosePrice = dailyClosePrice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<HashMap<String, Double>> getDailyClosePrice() {
+        return dailyClosePrice;
+    }
+
+    public void setDailyClosePrice(List<HashMap<String, Double>> dailyClosePrice) {
+        this.dailyClosePrice = dailyClosePrice;
+    }
 }

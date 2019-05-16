@@ -20,6 +20,7 @@ package pojo;
  * This class will define a company and its attributes
  * Look at resources/data/companyInfo.json
  */
+//Done
 public class Company {
 
     // TODO - Think back to your modelling session
@@ -27,4 +28,72 @@ public class Company {
     // provided data in resources/data
 
     // TODO - add getter and setter methods for your attributes
+
+    private String symbol;
+    private String name;
+    private String headquartersCity;
+    private String headquartersStateOrCountry;
+    private int numberOfEmployees;
+    private String sector;
+    private String industry;
+
+    public Company(){
+
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHeadquartersCity() {
+        return headquartersCity;
+    }
+
+    public void setHeadquartersCity(String headquartersCity) {
+        this.headquartersCity = headquartersCity;
+    }
+
+    public String getHeadquartersStateOrCountry() {
+        return headquartersStateOrCountry;
+    }
+
+    public void setHeadquartersStateOrCountry(String headquartersStateOrCountry) {
+        this.headquartersStateOrCountry = headquartersStateOrCountry;
+    }
+
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
 }
